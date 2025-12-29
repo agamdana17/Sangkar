@@ -9,6 +9,8 @@ use Filament\Resources\Pages\CreateRecord;
 
 class UserForm
 {
+    protected static ?string $recordTitleAttribute = 'name';
+    
     public static function configure(Schema $schema): Schema
     {
         return $schema

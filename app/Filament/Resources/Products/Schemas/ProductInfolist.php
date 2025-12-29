@@ -12,10 +12,10 @@ class ProductInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('category_id')
-                    ->numeric(),
-                TextEntry::make('brand_id')
-                    ->numeric(),
+                TextEntry::make('category.name')
+                ->label('Category'),
+                TextEntry::make('Brand.name')
+                ->label('Brand'),
                 TextEntry::make('name'),
                 TextEntry::make('slug'),
                 TextEntry::make('price')
