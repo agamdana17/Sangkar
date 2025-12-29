@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\Categories\Schemas;
+namespace App\Filament\Resources\Brands\Schemas;
 
-use App\Models\Category;
+use App\Models\Brand;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
 
-class CategoryForm
+class BrandForm
 {
     public static function configure(Schema $schema): Schema
     {
@@ -28,11 +28,11 @@ class CategoryForm
                     ->maxLength(255)
                     ->disabled()
                     ->dehydrated()  // tetap dikirim ke database
-                    ->unique(Category::class, 'slug', ignoreRecord: true)
+                    ->unique(Brand::class, 'slug', ignoreRecord: true)
                     ->required(),
                 FileUpload::make('image')
                     ->image()
-                    ->directory('categories')
+                    ->directory('Brand')
                     ->columnSpanFull()
                     ->imageEditor()
                     ->imagePreviewHeight('250')

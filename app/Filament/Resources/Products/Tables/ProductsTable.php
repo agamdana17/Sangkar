@@ -1,35 +1,41 @@
 <?php
 
-namespace App\Filament\Resources\Categories\Tables;
+namespace App\Filament\Resources\Products\Tables;
 
-use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class CategoriesTable
+class ProductsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
+                TextColumn::make('category_id')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('brand_id')
+                    ->numeric()
+                    ->sortable(),
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('slug')
                     ->searchable(),
-                ImageColumn::make('image')
-                    ->label('Image')
-                    ->state(function ($record) {
-                        return \Illuminate\Support\Facades\Storage::disk('local')->temporaryUrl(
-                            $record->image, now()->addMinutes(5)
-                        );
-                    }),
+                TextColumn::make('price')
+                    ->money()
+                    ->sortable(),
                 IconColumn::make('is_active')
+                    ->boolean(),
+                IconColumn::make('is_featured')
+                    ->boolean(),
+                IconColumn::make('in_stock')
+                    ->boolean(),
+                IconColumn::make('on_sale')
                     ->boolean(),
                 TextColumn::make('created_at')
                     ->dateTime()
@@ -44,10 +50,8 @@ class CategoriesTable
                 //
             ])
             ->recordActions([
-                ActionGroup::make([
-                    ViewAction::make(),
-                    DeleteAction::make(),
-                ]),
+                ViewAction::make(),
+                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
