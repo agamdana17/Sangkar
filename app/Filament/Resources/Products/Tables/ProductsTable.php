@@ -2,15 +2,17 @@
 
 namespace App\Filament\Resources\Products\Tables;
 
-use Filament\Actions\BulkActionGroup;
 use Filament\Actions\ActionGroup;
+use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Table;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Table;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsTable
 {
@@ -30,11 +32,13 @@ class ProductsTable
                 IconColumn::make('is_active')
                     ->boolean(),
                 IconColumn::make('is_featured')
-                    ->boolean(),
+                    ->boolean()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 IconColumn::make('in_stock')
                     ->boolean(),
                 IconColumn::make('on_sale')
-                    ->boolean(),
+                    ->boolean()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -46,10 +50,9 @@ class ProductsTable
             ])
             ->filters([
                 SelectFilter::make('category')
-                ->relationship('category','name'),
-
+                    ->relationship('category', 'name'),
                 SelectFilter::make('brand')
-                ->relationship('brand','name'),
+                    ->relationship('brand', 'name'),
             ])
             ->recordActions([
                 ActionGroup::make([

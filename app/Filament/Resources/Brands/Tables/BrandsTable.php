@@ -18,6 +18,7 @@ class BrandsTable
     {
         return $table
             ->columns([
+                
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('slug')

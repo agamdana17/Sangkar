@@ -26,6 +26,8 @@ class UserResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'UserResource';
 
+    protected static ?int $navigationSort = 1;
+
     public static function form(Schema $schema): Schema
     {
         return UserForm::configure($schema);
@@ -57,4 +59,6 @@ class UserResource extends Resource
             'edit' => EditUser::route('/{record}/edit'),
         ];
     }
+
+    
 }

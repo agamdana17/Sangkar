@@ -24,6 +24,8 @@ class ProductResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'Product';
 
+    protected static ?int $navigationSort = 4;
+
     public static function form(Schema $schema): Schema
     {
         return ProductForm::configure($schema);

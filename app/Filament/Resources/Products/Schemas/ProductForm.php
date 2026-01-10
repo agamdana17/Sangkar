@@ -46,9 +46,9 @@ class ProductForm
                         ])
                         ->columns(2),
                     // Upload Image
-                    Section::make('Image')
+                    Section::make('Images')
                         ->schema([
-                            FileUpload::make('image')
+                            FileUpload::make('images')
                                 ->image()
                                 ->multiple()
                                 ->directory('products')

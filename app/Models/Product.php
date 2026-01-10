@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    // Model
+
     protected $fillable = [
         'category_id',
         'brand_id',
@@ -24,16 +26,18 @@ class Product extends Model
         'images' => 'array'
     ];
 
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function brand() {
+    public function brand()
+    {
         return $this->belongsTo(Brand::class);
     }
-    
-    public function orderitems() {
-        return $this->belongsTo(OrderItem::class);
-    }
 
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }

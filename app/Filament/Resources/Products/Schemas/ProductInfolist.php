@@ -20,6 +20,7 @@ class ProductInfolist
                 TextEntry::make('slug'),
                 TextEntry::make('price')
                     ->money(),
+                    
                 IconEntry::make('is_active')
                     ->boolean(),
                 IconEntry::make('is_featured')

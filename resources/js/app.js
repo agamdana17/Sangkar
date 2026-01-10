@@ -1,5 +1,6 @@
 import './bootstrap';
 import Alpine from 'alpinejs'
+import 'preline'
 
 window.Alpine = Alpine
  
@@ -7,6 +8,12 @@ Alpine.start()
 
 import Swiper from 'swiper';
 import 'swiper/css';
+
+document.addEventListener('livewire:navigated', () => { 
+    window.HSStaticMethods.autoInit();
+})
+
+
 
 const swiper = new Swiper('.mySwiper', {
   loop: true,
@@ -17,4 +24,6 @@ const swiper = new Swiper('.mySwiper', {
     prevEl: '.swiper-button-prev',
   },
 });
+
+
 
